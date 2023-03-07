@@ -2,7 +2,7 @@ pipeline {
   agent any
 
   tools {
-    jdk "JAVA_HOME"
+    jdk "JDK17"
     maven 'Jenkin-Maven'
   }
   stages {
