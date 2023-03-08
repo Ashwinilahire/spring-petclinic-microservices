@@ -18,6 +18,7 @@ pipeline {
       steps {
         echo 'Building imgaes.......'
          sh 'java --version'
+        echo '$JAVA_HOME = "
          sh './mvnw clean install -P buildDocker'
       }
     }
