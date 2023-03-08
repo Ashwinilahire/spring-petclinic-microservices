@@ -13,14 +13,6 @@ pipeline {
         git 'https://github.com/Ashwinilahire/-spring-petclinic-microservices.git'
       }
     }
-    stage('jdk 17') {
-      steps {
-        withEnv(["JAVA_HOME=${tool 'openjdk_17'}", "PATH=${tool 'openjdk_17'}/bin:${env.PATH}"]) {
-          sh 'java -version'
-          sh 'javac -version'
-        }
-      }
-    }
 
     stage ('Build images') {
       steps {
