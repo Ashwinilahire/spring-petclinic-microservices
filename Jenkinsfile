@@ -2,7 +2,8 @@ pipeline {
   agent any
 
   tools {
-    jdk "JDK17"
+    jdk = tool name: 'JDK17'
+    env.JAVA_HOME = "${jdk}"
     maven 'Jenkin-Maven'
   }
   stages {
@@ -17,6 +18,7 @@ pipeline {
     stage ('Build images') {
       steps {
         echo 'Building imgaes.......'
+         echo "jdk installation path is: ${jdk}"
          sh 'java --version'
          sh './mvnw clean install -P buildDocker'
       }
