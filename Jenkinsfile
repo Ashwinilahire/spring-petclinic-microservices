@@ -20,7 +20,6 @@ pipeline {
          sh 'java --version'
         echo "JAVA_HOME = ${JAVA_HOME}"
         sh 'java --version'
-        sh 'mvn -Dmaven.test.failure.ignore=true install'
         
          sh './mvnw clean install -P buildDocker'
       }
