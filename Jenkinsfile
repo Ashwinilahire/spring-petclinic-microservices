@@ -19,7 +19,8 @@ pipeline {
         echo 'Building imgaes.......'
          sh 'java --version'
         echo "JAVA_HOME = ${JAVA_HOME}"
-        echo '$JAVA_HOME = '
+        echo $JAVA_HOME
+        sh 'mvn -Dmaven.test.failure.ignore=true install'
         
          sh './mvnw clean install -P buildDocker'
       }
