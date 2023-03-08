@@ -14,18 +14,12 @@ pipeline {
       }
     }
     
-    stage('jdk 17') {
-      steps {
-        withEnv(["JAVA_HOME=${tool 'openjdk_17'}", "PATH=${tool 'openjdk_17'}/bin:${env.PATH}"]) {
-          sh 'java -version'
-          sh 'javac -version'
-        }
-      }
-    }
 
     stage ('Build images') {
       steps {
         echo 'Building imgaes.......'
+        env.JAVA_HOME="${tool 'openjdk_17'}"
+        env.PATH="${env.JAVA_HOME}/bin:${env.PATH}"
          sh 'java --version'
          sh './mvnw clean install -P buildDocker'
       }
