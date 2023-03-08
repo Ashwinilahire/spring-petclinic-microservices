@@ -2,8 +2,7 @@ pipeline {
   agent any
 
   tools {
-    jdk = tool name: 'JDK17'
-    env.JAVA_HOME = "${jdk}"
+    jdk 'JDK17'
     maven 'Jenkin-Maven'
   }
   stages {
@@ -14,11 +13,19 @@ pipeline {
         git 'https://github.com/Ashwinilahire/-spring-petclinic-microservices.git'
       }
     }
+    
+    stage('jdk 17') {
+      steps {
+        withEnv(["JAVA_HOME=${tool 'openjdk_17'}", "PATH=${tool 'openjdk_17'}/bin:${env.PATH}"]) {
+          sh 'java -version'
+          sh 'javac -version'
+        }
+      }
+    }
 
     stage ('Build images') {
       steps {
         echo 'Building imgaes.......'
-         echo "jdk installation path is: ${jdk}"
          sh 'java --version'
          sh './mvnw clean install -P buildDocker'
       }
